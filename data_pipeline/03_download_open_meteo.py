@@ -238,7 +238,7 @@ def build_surface_data(all_station_data):
 
 def main():
     print("=" * 60)
-    print("AlpineVerify — Open-Meteo Data Pipeline (NO API KEY)")
+    print("SnowLens — Open-Meteo Data Pipeline (NO API KEY)")
     print("Downloading real ERA5-based reanalysis data...")
     print("=" * 60)
 

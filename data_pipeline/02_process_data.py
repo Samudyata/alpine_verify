@@ -374,7 +374,7 @@ def process_and_export():
 
 if __name__ == "__main__":
     print("=" * 60)
-    print("AlpineVerify Data Processing Pipeline")
+    print("SnowLens Data Processing Pipeline")
     print("=" * 60)
     process_and_export()
     print("\nDone! Frontend data is ready at frontend/public/data/alpine_snow_data.json")

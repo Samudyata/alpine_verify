@@ -1,4 +1,4 @@
-# AlpineVerify Slide Deck — Exact Content
+# SnowLens Slide Deck — Exact Content
 ## File name: AIB_03_00_SLIDES_ASU.pptx
 ## Design: https://www.canva.com/d/vV24XIvUUw4omiV
 
@@ -7,7 +7,7 @@
 ## SLIDE 1: TITLE COVER
 
 **Title (large, bold, centered):**
-AlpineVerify: Satellite Truth vs. Climate Fiction
+SnowLens: Satellite Lens on Alpine Snow
 
 **Subtitle (smaller, below title):**
 Using 25 years of ERA5 satellite data to fact-check climate disinformation in the European Alps
@@ -270,7 +270,7 @@ ARIMA forecast on ERA5 data | statsmodels library | 3 IPCC scenario multipliers
 3. "Individual weather events don't negate 25-year climate trends (p = 0.005)"
 
 **Text:**
-AlpineVerify's Fact Checker matches claims against real statistical results from our ERA5 analysis. Each verdict includes: a confidence level from actual p-values, a plain-English explanation with specific numbers, and an evidence chart from real station data. Source citations appear at the bottom of every result. No GIS expertise required — built for journalists, educators, and policymakers.
+SnowLens's Fact Checker matches claims against real statistical results from our ERA5 analysis. Each verdict includes: a confidence level from actual p-values, a plain-English explanation with specific numbers, and an evidence chart from real station data. Source citations appear at the bottom of every result. No GIS expertise required — built for journalists, educators, and policymakers.
 
 **Footer:**
 Try it live: alpineverify.vercel.app/fact-checker
@@ -284,7 +284,7 @@ Try it live: alpineverify.vercel.app/fact-checker
 **Layout: 5 sections with bold headers, icon-style layout**
 
 **For Journalists & Media:**
-Climate reporters can verify any claim about Alpine snow in seconds. AlpineVerify provides citation-ready charts with source attribution — p-values, station names, methodology. Ready to embed in articles. No more "he said, she said" — let the satellites settle it.
+Climate reporters can verify any claim about Alpine snow in seconds. SnowLens provides citation-ready charts with source attribution — p-values, station names, methodology. Ready to embed in articles. No more "he said, she said" — let the satellites settle it.
 
 **For Policymakers & Government:**
 The EU Climate Law and European Green Deal require evidence-based monitoring. Our statistical analysis directly supports Alpine Convention obligations and national climate adaptation plans. The 2013 change point gives a concrete, policy-relevant timeline for when things got worse.
@@ -296,7 +296,7 @@ Alpine snowmelt feeds the Rhine, Danube, Po, and Rhone rivers. Our projections s
 Low-elevation resorts (<1500m) face less than 4 months of viable snow by 2050. This helps the 70B+ euro European ski industry make data-driven decisions about snowmaking investment, diversification, and facility planning.
 
 **Answering "So What?" for Satellite Data:**
-ERA5 reanalysis is the only source providing consistent, gap-free, 25-year coverage across remote Alpine locations. Ground stations have missing data and inconsistent coverage. Satellite-assimilated reanalysis combines the best of both — and AlpineVerify makes it accessible to everyone, not just climate scientists.
+ERA5 reanalysis is the only source providing consistent, gap-free, 25-year coverage across remote Alpine locations. Ground stations have missing data and inconsistent coverage. Satellite-assimilated reanalysis combines the best of both — and SnowLens makes it accessible to everyone, not just climate scientists.
 
 **Design note:** Use icons or colored sidebar markers for each section. Make headers bold and prominent. This slide is text-heavy by necessity — use layout to make it scannable (maybe 2-column or card-style boxes).
 
@@ -304,7 +304,7 @@ ERA5 reanalysis is the only source providing consistent, gap-free, 25-year cover
 
 ## SLIDE 12: NEXT STEPS
 
-**Title:** Where AlpineVerify Goes Next
+**Title:** Where SnowLens Goes Next
 
 **Layout: Three sections with headers**
 
@@ -331,7 +331,7 @@ ERA5 reanalysis is the only source providing consistent, gap-free, 25-year cover
 
 **Links:**
 Live: alpineverify.vercel.app
-Code: github.com/Samudyata/AlpineVerify
+Code: github.com/Samudyata/SnowLens
 
 ---
 
@@ -344,11 +344,11 @@ Code: github.com/Samudyata/AlpineVerify
 "These aren't opinions. This is what the satellites see."
 
 **Below that:**
-AlpineVerify — Making climate evidence accessible to everyone.
+SnowLens — Making climate evidence accessible to everyone.
 
 **Links:**
 Live Demo: alpineverify.vercel.app
-Source Code: github.com/Samudyata/AlpineVerify
+Source Code: github.com/Samudyata/SnowLens
 
 **Bottom:**
 Team #3 | Samudyata, Chinmayi, Shambhavi | Arizona State University

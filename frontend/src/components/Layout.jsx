@@ -26,10 +26,10 @@ export default function Layout({ children }) {
         <div className="max-w-7xl mx-auto px-8 h-16 flex items-center justify-between">
           <NavLink to="/" className="flex items-center gap-3 no-underline group">
             <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center shadow-sm shadow-blue-500/20">
-              <span className="text-white text-sm font-bold">AV</span>
+              <span className="text-white text-sm font-bold">SL</span>
             </div>
             <span className="text-lg font-bold text-slate-100 tracking-tight group-hover:text-blue-400 transition-colors">
-              AlpineVerify
+              SnowLens
             </span>
           </NavLink>
 
@@ -63,7 +63,7 @@ export default function Layout({ children }) {
         <div className="max-w-7xl mx-auto px-8">
           <div className="border-t border-slate-700/50 pt-8">
             <p className="text-sm text-slate-500">
-              AlpineVerify &mdash; SpaceHACK for Sustainability 2026
+              SnowLens &mdash; SpaceHACK for Sustainability 2026
             </p>
             <p className="text-xs text-slate-600 mt-2">
               Satellite data from Copernicus Climate Data Store | MODIS MOD10A1 | EEAR-Clim

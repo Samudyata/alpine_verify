@@ -88,7 +88,7 @@ def download_temperature():
 
 if __name__ == "__main__":
     print("=" * 60)
-    print("ERA5-Land Data Download for AlpineVerify")
+    print("ERA5-Land Data Download for SnowLens")
     print("Region: European Alps (45°N-48.5°N, 5°E-11.5°E)")
     print("Period: 2000-2024, monthly means")
     print("=" * 60)

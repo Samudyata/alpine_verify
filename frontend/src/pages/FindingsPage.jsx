@@ -113,7 +113,7 @@ export default function FindingsPage() {
 
       {/* Journalist section */}
       <h2 className="text-3xl font-bold text-white text-center mb-14">
-        How Journalists Can Use AlpineVerify
+        How Journalists Can Use SnowLens
       </h2>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-20">

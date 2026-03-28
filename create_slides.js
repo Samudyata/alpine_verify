@@ -54,8 +54,8 @@ function addCard(slide, x, y, w, h, bgColor) {
 // ── Create Presentation ────────────────────────────────────────────────────
 const pres = new pptxgen();
 pres.layout = "LAYOUT_WIDE"; // 16:9
-pres.author = "AlpineVerify Team";
-pres.title = "AlpineVerify: Satellite Truth vs. Climate Fiction";
+pres.author = "SnowLens Team";
+pres.title = "SnowLens: Satellite Lens on Alpine Snow";
 
 // ════════════════════════════════════════════════════════════════════════════
 // SLIDE 1: TITLE COVER
@@ -71,7 +71,7 @@ pres.title = "AlpineVerify: Satellite Truth vs. Climate Fiction";
   });
 
   // Main title centered
-  s.addText("AlpineVerify: Satellite Truth\nvs. Climate Fiction", {
+  s.addText("SnowLens: Satellite Lens\non Alpine Snow", {
     x: 1, y: 1.8, w: 11.3, h: 1.8,
     fontSize: 40, fontFace: "Georgia", color: C.white, bold: true,
     align: "center", valign: "middle", margin: 0, lineSpacingMultiple: 1.1,
@@ -756,7 +756,7 @@ pres.title = "AlpineVerify: Satellite Truth vs. Climate Fiction";
   });
 
   // How it works text
-  s.addText("AlpineVerify\u2019s Fact Checker matches claims against real statistical results from our ERA5 analysis. Each verdict includes a confidence level from actual p-values, a plain-English explanation with specific numbers, and an evidence chart from real station data. No GIS expertise required \u2014 built for journalists, educators, and policymakers.", {
+  s.addText("SnowLens\u2019s Fact Checker matches claims against real statistical results from our ERA5 analysis. Each verdict includes a confidence level from actual p-values, a plain-English explanation with specific numbers, and an evidence chart from real station data. No GIS expertise required \u2014 built for journalists, educators, and policymakers.", {
     x: 0.5, y: 5.0, w: 12.3, h: 1.0,
     fontSize: 10.5, fontFace: "Calibri", color: C.muted,
     align: "left", valign: "top", margin: 0, lineSpacingMultiple: 1.3,
@@ -781,7 +781,7 @@ pres.title = "AlpineVerify: Satellite Truth vs. Climate Fiction";
     {
       title: "For Journalists & Media",
       accent: C.blue,
-      text: "Climate reporters can verify any claim about Alpine snow in seconds. AlpineVerify provides citation-ready charts with source attribution \u2014 p-values, station names, methodology. Ready to embed in articles.",
+      text: "Climate reporters can verify any claim about Alpine snow in seconds. SnowLens provides citation-ready charts with source attribution \u2014 p-values, station names, methodology. Ready to embed in articles.",
     },
     {
       title: "For Policymakers & Government",
@@ -801,7 +801,7 @@ pres.title = "AlpineVerify: Satellite Truth vs. Climate Fiction";
     {
       title: "Answering \"So What?\" for Satellite Data",
       accent: C.purple,
-      text: "ERA5 reanalysis is the only source providing consistent, gap-free, 25-year coverage across remote Alpine locations. AlpineVerify makes it accessible to everyone, not just climate scientists.",
+      text: "ERA5 reanalysis is the only source providing consistent, gap-free, 25-year coverage across remote Alpine locations. SnowLens makes it accessible to everyone, not just climate scientists.",
     },
   ];
 
@@ -828,7 +828,7 @@ pres.title = "AlpineVerify: Satellite Truth vs. Climate Fiction";
 // ════════════════════════════════════════════════════════════════════════════
 (function slide12() {
   const s = addBgSlide(pres);
-  addTitle(s, "Where AlpineVerify Goes Next");
+  addTitle(s, "Where SnowLens Goes Next");
 
   // Three section cards
   const nextSections = [
@@ -925,7 +925,7 @@ pres.title = "AlpineVerify: Satellite Truth vs. Climate Fiction";
     { text: "Live: ", options: { fontSize: 11, fontFace: "Calibri", color: C.muted } },
     { text: "alpineverify.vercel.app", options: { fontSize: 11, fontFace: "Calibri", color: C.blue, bold: true } },
     { text: "    Code: ", options: { fontSize: 11, fontFace: "Calibri", color: C.muted } },
-    { text: "github.com/Samudyata/AlpineVerify", options: { fontSize: 11, fontFace: "Calibri", color: C.blue, bold: true } },
+    { text: "github.com/Samudyata/SnowLens", options: { fontSize: 11, fontFace: "Calibri", color: C.blue, bold: true } },
   ], {
     x: 0.5, y: 6.5, w: 12.3, h: 0.4,
     align: "center", valign: "middle", margin: 0,
@@ -953,7 +953,7 @@ pres.title = "AlpineVerify: Satellite Truth vs. Climate Fiction";
   });
 
   // Tagline
-  s.addText("AlpineVerify \u2014 Making climate evidence accessible to everyone.", {
+  s.addText("SnowLens \u2014 Making climate evidence accessible to everyone.", {
     x: 1, y: 3.7, w: 11.3, h: 0.6,
     fontSize: 16, fontFace: "Calibri", color: C.blue,
     align: "center", valign: "middle", margin: 0,
@@ -964,7 +964,7 @@ pres.title = "AlpineVerify: Satellite Truth vs. Climate Fiction";
     { text: "Live Demo: ", options: { fontSize: 12, fontFace: "Calibri", color: C.muted } },
     { text: "alpineverify.vercel.app", options: { fontSize: 12, fontFace: "Calibri", color: C.blue, bold: true, breakLine: true } },
     { text: "Source Code: ", options: { fontSize: 12, fontFace: "Calibri", color: C.muted } },
-    { text: "github.com/Samudyata/AlpineVerify", options: { fontSize: 12, fontFace: "Calibri", color: C.blue, bold: true } },
+    { text: "github.com/Samudyata/SnowLens", options: { fontSize: 12, fontFace: "Calibri", color: C.blue, bold: true } },
   ], {
     x: 1, y: 4.5, w: 11.3, h: 0.9,
     align: "center", valign: "middle", margin: 0,
