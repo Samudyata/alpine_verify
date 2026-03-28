@@ -1,6 +1,6 @@
 # SnowLens
 
-**Satellite Lens on Alpine Snow** — A web-based climate fact-checking tool that uses 25 years of ERA5 satellite data to verify claims about Alpine snow cover.
+**Where Satellite Data Meets Climate Truth** — A web-based climate fact-checking tool that uses 25 years of ERA5 satellite data to verify claims about Alpine snow cover.
 
 Built for [SpaceHACK for Sustainability 2026](https://spacehack.space/) | Track AIB: Climate Change and the Alpine Information Battle
 

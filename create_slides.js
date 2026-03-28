@@ -55,7 +55,7 @@ function addCard(slide, x, y, w, h, bgColor) {
 const pres = new pptxgen();
 pres.layout = "LAYOUT_WIDE"; // 16:9
 pres.author = "SnowLens Team";
-pres.title = "SnowLens: Satellite Lens on Alpine Snow";
+pres.title = "SnowLens: Where Satellite Data Meets Climate Truth";
 
 // ════════════════════════════════════════════════════════════════════════════
 // SLIDE 1: TITLE COVER

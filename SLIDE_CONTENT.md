@@ -7,7 +7,7 @@
 ## SLIDE 1: TITLE COVER
 
 **Title (large, bold, centered):**
-SnowLens: Satellite Lens on Alpine Snow
+SnowLens: Where Satellite Data Meets Climate Truth
 
 **Subtitle (smaller, below title):**
 Using 25 years of ERA5 satellite data to fact-check climate disinformation in the European Alps

@@ -16,7 +16,7 @@ export default function HomePage() {
             SpaceHACK for Sustainability 2026
           </div>
           <h1 className="text-6xl font-bold text-white tracking-tight mb-8 leading-tight">
-            Satellite Truth vs.<br />Climate Fiction
+            Where Satellite Data<br />Meets Climate Truth
           </h1>
           <p className="text-xl text-slate-300 mb-12 max-w-2xl leading-relaxed mx-auto">
             Using 25 years of satellite data to fact-check climate disinformation
