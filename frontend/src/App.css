@@ -1,0 +1,91 @@
+/* Card - glass morphism style */
+.card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 20px;
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.04),
+    0 4px 16px rgba(0, 0, 0, 0.03);
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+.card:hover {
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.06),
+    0 8px 32px rgba(0, 0, 0, 0.04);
+  transform: translateY(-1px);
+}
+
+/* Stat card */
+.stat-card {
+  background: linear-gradient(135deg, #EFF6FF 0%, #F8FAFF 50%, #FFFFFF 100%);
+  border: 1px solid rgba(219, 234, 254, 0.8);
+  border-radius: 20px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+.stat-card:hover {
+  border-color: rgba(147, 197, 253, 0.6);
+  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.08);
+}
+
+/* Verdict badges */
+.badge-refuted {
+  background: linear-gradient(135deg, #FEE2E2, #FECACA);
+  color: #DC2626;
+  padding: 0.375rem 1rem;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 0.8rem;
+  display: inline-block;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.badge-supported {
+  background: linear-gradient(135deg, #DCFCE7, #BBF7D0);
+  color: #15803D;
+  padding: 0.375rem 1rem;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 0.8rem;
+  display: inline-block;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.badge-insufficient {
+  background: linear-gradient(135deg, #FEF3C7, #FDE68A);
+  color: #B45309;
+  padding: 0.375rem 1rem;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 0.8rem;
+  display: inline-block;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Section */
+.section {
+  min-height: 100vh;
+  padding: 5rem 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Smooth page transitions */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-in {
+  animation: fadeInUp 0.6s ease-out;
+}
