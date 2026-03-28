@@ -267,7 +267,7 @@ pres.title = "AlpineVerify: Satellite Truth vs. Climate Fiction";
     { value: "-21.6", label: "days/decade snow loss\nat low elevations (p = 0.005)", color: C.red },
     { value: "69%", label: "of snow variation explained\nby temperature (R = -0.828)", color: C.blue },
     { value: "2013", label: "Year decline accelerated\n(Pettitt change point, p = 0.007)", color: C.amber },
-    { value: "97", label: "Projected snow days\nby 2050 at low elevations", color: C.red },
+    { value: "76", label: "Projected snow days\nby 2050 at low elevations", color: C.red },
   ];
 
   stats.forEach((st, i) => {
@@ -583,17 +583,17 @@ pres.title = "AlpineVerify: Satellite Truth vs. Climate Fiction";
   const allYears = yearsHist.concat(yearsProj);
 
   const lowAlpsHist = [153,160,142,164,176,142,153,168,152,134,190,115,175,170,180,135,131,133,122,124,157,148,111,113,108];
-  // Exponential decay projection: floor + (S0-floor)*exp(-r*t), S0=171.5, floor=60, r=0.0223
+  // Exponential decay: floor + (last_val - floor) * exp(-r * t), calibrated to observed slope
   const nullPad25 = [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null];
-  // Current Trend (floor=60): curves down toward ~97 by 2050
+  // Current Trend (floor=60, r=0.0436): 108 -> 76 by 2050
   const projCurrent = [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,108,
-    123.9,121.5,119.2,117.0,114.9,112.8,110.8,108.9,107.1,105.3,111.1,103.6,101.9,100.3,98.8,97.3,96.6,96.0,95.5,95.0,94.5,94.0,93.6,93.2,92.8,96.6];
-  // RCP 8.5 (floor=30, r*1.4): steeper curve toward ~60 by 2050
+    106.2,104.3,102.4,100.6,98.8,97.2,95.6,94.1,92.6,91.2,89.9,88.6,87.4,86.2,85.1,84.0,83.0,82.0,81.1,80.2,79.3,78.5,77.7,77.0,76.2,75.5];
+  // RCP 8.5 (floor=30, r=0.0404): 108 -> 57 by 2050
   const projRCP85 = [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,108,
-    94.9,90.5,86.5,82.8,79.4,76.3,73.5,71.0,68.7,66.6,77.5,64.8,63.2,61.8,60.6,59.5,59.3,59.1,58.9,58.8,58.7,58.6,58.5,58.5,58.4,59.7];
-  // RCP 2.6 (floor=78, r*0.7): gentler curve toward ~121 by 2050
+    105.2,102.5,99.9,97.4,95.0,92.7,90.5,88.4,86.4,84.5,80.2,78.6,77.0,75.5,74.1,72.8,71.5,70.3,69.2,68.1,67.1,66.1,65.2,64.4,63.6,57.4];
+  // RCP 2.6 (floor=78, r=0.0417): 108 -> 88 by 2050
   const projRCP26 = [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,108,
-    141.3,139.5,137.8,136.2,134.6,133.1,131.7,130.4,129.1,127.9,132.2,126.7,125.6,124.6,123.6,122.7,122.4,122.1,121.8,121.5,121.3,121.1,120.9,120.8,120.6,120.9];
+    107.1,106.0,105.0,104.0,103.0,102.1,101.2,100.4,99.6,98.8,97.1,96.4,95.8,95.2,94.6,94.1,93.6,93.1,92.7,92.3,91.9,91.5,91.2,90.9,90.6,88.2];
 
   const observed = lowAlpsHist.concat(nullPad25).concat([null]);
 
@@ -647,18 +647,18 @@ pres.title = "AlpineVerify: Satellite Truth vs. Climate Fiction";
     ],
     [
       { text: "Current Trend", options: { fontSize: 10, fontFace: "Calibri", color: C.white, fill: { color: C.card } } },
-      { text: "97 days", options: { fontSize: 10, fontFace: "Calibri", color: C.amber, bold: true, fill: { color: C.card } } },
-      { text: "-11 days", options: { fontSize: 10, fontFace: "Calibri", color: C.red, fill: { color: C.card } } },
+      { text: "76 days", options: { fontSize: 10, fontFace: "Calibri", color: C.amber, bold: true, fill: { color: C.card } } },
+      { text: "-32 days", options: { fontSize: 10, fontFace: "Calibri", color: C.red, fill: { color: C.card } } },
     ],
     [
       { text: "Accelerated (RCP 8.5)", options: { fontSize: 10, fontFace: "Calibri", color: C.white, fill: { color: "1E2544" } } },
-      { text: "60 days", options: { fontSize: 10, fontFace: "Calibri", color: C.red, bold: true, fill: { color: "1E2544" } } },
-      { text: "-48 days", options: { fontSize: 10, fontFace: "Calibri", color: C.red, fill: { color: "1E2544" } } },
+      { text: "57 days", options: { fontSize: 10, fontFace: "Calibri", color: C.red, bold: true, fill: { color: "1E2544" } } },
+      { text: "-51 days", options: { fontSize: 10, fontFace: "Calibri", color: C.red, fill: { color: "1E2544" } } },
     ],
     [
       { text: "Paris-Aligned (RCP 2.6)", options: { fontSize: 10, fontFace: "Calibri", color: C.white, fill: { color: C.card } } },
-      { text: "121 days", options: { fontSize: 10, fontFace: "Calibri", color: C.green, bold: true, fill: { color: C.card } } },
-      { text: "-13 days", options: { fontSize: 10, fontFace: "Calibri", color: C.green, fill: { color: C.card } } },
+      { text: "88 days", options: { fontSize: 10, fontFace: "Calibri", color: C.green, bold: true, fill: { color: C.card } } },
+      { text: "-20 days", options: { fontSize: 10, fontFace: "Calibri", color: C.green, fill: { color: C.card } } },
     ],
   ];
 
@@ -672,16 +672,16 @@ pres.title = "AlpineVerify: Satellite Truth vs. Climate Fiction";
 
   // Explanation text
   s.addText([
-    { text: "Under current trends, low-elevation Alps will have ~97 snow days by 2050 (just 3 months). RCP 8.5 drops it to 60 days \u2014 2 months.", options: { fontSize: 11, fontFace: "Calibri", color: C.white, bold: true, breakLine: true } },
-    { text: "Mid Alps remain stable at ~311 days. High Alps stay at 366 (year-round). The divergence between elevation bands will only widen.", options: { fontSize: 10, fontFace: "Calibri", color: C.muted, breakLine: true } },
+    { text: "Under current trends, low-elevation Alps will have just 76 snow days by 2050 (~2.5 months). RCP 8.5 drops it to 57 days \u2014 under 2 months.", options: { fontSize: 11, fontFace: "Calibri", color: C.white, bold: true, breakLine: true } },
+    { text: "Mid Alps converge toward ~312 days (mean reversion). High Alps stay at 366 (year-round). The divergence between bands widens.", options: { fontSize: 10, fontFace: "Calibri", color: C.muted, breakLine: true } },
     { text: "\n", options: { fontSize: 4, breakLine: true } },
-    { text: "Exponential decay model: floor + (S0-floor)*exp(-r*t). Floor = 60 days (core winter retains snow). Physically motivated \u2014 decline slows as it approaches the climatological minimum.", options: { fontSize: 9, fontFace: "Calibri", color: C.muted } },
+    { text: "Method: Exponential decay model \u2014 floor + (S_last - floor) \u00D7 exp(-r \u00D7 t). Decay rate r calibrated to match observed slope (-2.11 days/yr). Floor = 60 days (core winter retains snow even with warming). Physically motivated: decline slows as snow approaches climatological minimum.", options: { fontSize: 9, fontFace: "Calibri", color: C.muted } },
   ], {
     x: 0.5, y: 4.75, w: 12.3, h: 1.4,
     valign: "top", margin: 0, lineSpacingMultiple: 1.25,
   });
 
-  s.addText("Data Source: ARIMA forecast on ERA5 data | statsmodels library | 3 IPCC scenario multipliers", {
+  s.addText("Data Source: Exponential decay model on ERA5 data | scipy.optimize | Floor calibrated to core winter | IPCC scenario multipliers", {
     x: 0.5, y: 6.55, w: 12.3, h: 0.35,
     fontSize: 9, fontFace: "Calibri", color: C.muted,
     align: "left", valign: "middle", margin: 0,
@@ -791,12 +791,12 @@ pres.title = "AlpineVerify: Satellite Truth vs. Climate Fiction";
     {
       title: "For Water Security \u2014 170M+ People",
       accent: C.green,
-      text: "Alpine snowmelt feeds the Rhine, Danube, Po, and Rhone rivers. Projections show low-elevation snow dropping to ~97 days by 2050 (60 under RCP 8.5), threatening hydropower, agriculture, and municipal water.",
+      text: "Alpine snowmelt feeds the Rhine, Danube, Po, and Rhone rivers. Projections show low-elevation snow dropping to 76 days by 2050 (57 under RCP 8.5), threatening hydropower, agriculture, and municipal water.",
     },
     {
       title: "For the Ski Industry",
       accent: C.red,
-      text: "Low-elevation resorts (<1500m) face ~3 months of snow by 2050 (97 days current, 60 under RCP 8.5). This helps the 70B+ euro ski industry make data-driven decisions about snowmaking and diversification.",
+      text: "Low-elevation resorts (<1500m) face ~2.5 months of snow by 2050 (76 days current trend, 57 under RCP 8.5). This helps the 70B+ euro ski industry make data-driven decisions about snowmaking and diversification.",
     },
     {
       title: "Answering \"So What?\" for Satellite Data",

@@ -103,7 +103,7 @@ export default function ProjectionChart({ elevationBand, scenario, realData }) {
         style={{ width: '100%' }}
       />
       <p className={`text-xs mt-2 text-center ${isReal ? 'text-green-400' : 'text-yellow-400'}`}>
-        {isReal ? 'ARIMA projection based on real ERA5 station data' : 'Demo projection — run data pipeline for real data'}
+        {isReal ? 'Exponential decay projection based on real ERA5 station data' : 'Demo projection — run data pipeline for real data'}
       </p>
     </div>
   );
