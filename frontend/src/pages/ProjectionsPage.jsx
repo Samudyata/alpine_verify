@@ -1,45 +1,56 @@
 import { useState } from 'react';
 import ProjectionChart from '../components/ProjectionChart';
+import useSnowData, { getBandData, getBandNames } from '../hooks/useSnowData';
 
-const elevationBands = ['Low Alps (< 1500m)', 'Mid Alps (1500-2500m)', 'High Alps (> 2500m)'];
-const scenarios = ['Current Trend', 'Accelerated (RCP 8.5)', 'Paris-Aligned (RCP 2.6)'];
+const scenarioNames = ['Current Trend', 'Accelerated (RCP 8.5)', 'Paris-Aligned (RCP 2.6)'];
 
 export default function ProjectionsPage() {
   const [selectedBand, setSelectedBand] = useState(0);
   const [selectedScenario, setSelectedScenario] = useState(0);
+  const { data: snowData, error } = useSnowData();
 
-  // Headline projections per band/scenario
-  const projections = [
-    [{ loss: 38, byYear: 2050, snowDays: 47 }, { loss: 52, byYear: 2050, snowDays: 33 }, { loss: 22, byYear: 2050, snowDays: 63 }],
-    [{ loss: 24, byYear: 2050, snowDays: 121 }, { loss: 35, byYear: 2050, snowDays: 110 }, { loss: 15, byYear: 2050, snowDays: 130 }],
-    [{ loss: 12, byYear: 2050, snowDays: 188 }, { loss: 18, byYear: 2050, snowDays: 182 }, { loss: 7, byYear: 2050, snowDays: 193 }],
-  ];
+  const bandNames = getBandNames(snowData);
+  const bandData = getBandData(snowData, selectedBand);
 
-  const proj = projections[selectedBand][selectedScenario];
+  // Get real projection stats or fallback
+  const scName = scenarioNames[selectedScenario];
+  const realProj = bandData?.projections?.[scName];
+  const proj = realProj
+    ? { loss: Math.abs(realProj.loss_by_2050), snowDays: realProj.snow_days_2050, byYear: 2050 }
+    : { loss: '--', snowDays: '--', byYear: 2050 };
 
   return (
-    <div className="max-w-7xl mx-auto px-6 py-12">
-      <div className="mb-12">
-        <h1 className="text-4xl font-bold text-slate-900 mb-4">Future Projections</h1>
-        <p className="text-lg text-slate-600 max-w-2xl">
-          ARIMA forecasts to 2050 based on observed satellite trends. Three scenarios
+    <div className="max-w-7xl mx-auto px-8 py-16">
+      <div className="mb-14 text-center">
+        <h1 className="text-4xl font-bold text-white mb-5">Future Projections</h1>
+        <p className="text-lg text-slate-400 max-w-3xl leading-relaxed mx-auto">
+          ARIMA forecasts to 2050 based on real ERA5 station observations. Three scenarios
           show the range of possible futures.
         </p>
+        {snowData && (
+          <p className="text-xs text-green-400 mt-3">
+            Source: {snowData.metadata?.source} | {snowData.metadata?.period}
+          </p>
+        )}
+        {error && (
+          <p className="text-xs text-yellow-400 mt-3">
+            Using demo data — run data pipeline for real projections
+          </p>
+        )}
       </div>
 
-      {/* Controls */}
-      <div className="flex flex-wrap gap-6 mb-8">
-        <div>
-          <label className="block text-sm font-medium text-slate-500 mb-2">Elevation Band</label>
-          <div className="flex gap-2">
-            {elevationBands.map((band, i) => (
+      <div className="flex flex-wrap gap-8 mb-10 justify-center">
+        <div className="text-center">
+          <label className="block text-sm font-medium text-slate-500 mb-3">Elevation Band</label>
+          <div className="flex gap-3 flex-wrap justify-center">
+            {bandNames.map((band, i) => (
               <button
                 key={i}
                 onClick={() => setSelectedBand(i)}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                className={`px-8 py-3 rounded-lg text-sm font-medium transition-colors whitespace-nowrap ${
                   selectedBand === i
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50'
+                    ? 'bg-blue-500 text-white shadow-sm shadow-blue-500/30'
+                    : 'bg-slate-800 text-slate-400 border border-slate-700 hover:bg-slate-700'
                 }`}
               >
                 {band}
@@ -47,17 +58,17 @@ export default function ProjectionsPage() {
             ))}
           </div>
         </div>
-        <div>
-          <label className="block text-sm font-medium text-slate-500 mb-2">Scenario</label>
-          <div className="flex gap-2">
-            {scenarios.map((scenario, i) => (
+        <div className="text-center">
+          <label className="block text-sm font-medium text-slate-500 mb-3">Scenario</label>
+          <div className="flex gap-3 flex-wrap justify-center">
+            {scenarioNames.map((scenario, i) => (
               <button
                 key={i}
                 onClick={() => setSelectedScenario(i)}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                className={`px-8 py-3 rounded-lg text-sm font-medium transition-colors whitespace-nowrap ${
                   selectedScenario === i
-                    ? 'bg-amber-500 text-white'
-                    : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50'
+                    ? 'bg-amber-500 text-white shadow-sm shadow-amber-500/30'
+                    : 'bg-slate-800 text-slate-400 border border-slate-700 hover:bg-slate-700'
                 }`}
               >
                 {scenario}
@@ -67,35 +78,41 @@ export default function ProjectionsPage() {
         </div>
       </div>
 
-      {/* Headline cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <div className="stat-card text-center">
-          <div className="text-4xl font-bold text-red-600 mb-2">-{proj.loss}</div>
-          <div className="text-sm font-medium text-slate-600">
-            Fewer snow days by {proj.byYear}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
+        <div className="stat-card text-center py-10">
+          <div className="text-4xl font-bold text-red-400 mb-3">
+            {typeof proj.loss === 'number' ? (proj.loss > 0 ? `-${proj.loss.toFixed(0)}` : `+${Math.abs(proj.loss).toFixed(0)}`) : proj.loss}
+          </div>
+          <div className="text-sm font-medium text-slate-400">
+            Snow days change by {proj.byYear}
           </div>
         </div>
-        <div className="stat-card text-center">
-          <div className="text-4xl font-bold text-blue-600 mb-2">{proj.snowDays}</div>
-          <div className="text-sm font-medium text-slate-600">
+        <div className="stat-card text-center py-10">
+          <div className="text-4xl font-bold text-blue-400 mb-3">
+            {typeof proj.snowDays === 'number' ? proj.snowDays.toFixed(0) : proj.snowDays}
+          </div>
+          <div className="text-sm font-medium text-slate-400">
             Projected snow days in {proj.byYear}
           </div>
         </div>
-        <div className="stat-card text-center">
-          <div className="text-4xl font-bold text-amber-600 mb-2">
-            {(proj.loss * 0.8).toFixed(0)}B L
+        <div className="stat-card text-center py-10">
+          <div className="text-4xl font-bold text-amber-400 mb-3">
+            {bandData?.mann_kendall?.slope !== undefined ? `${bandData.mann_kendall.slope}` : '--'}
           </div>
-          <div className="text-sm font-medium text-slate-600">
-            Est. annual snowmelt loss (liters)
+          <div className="text-sm font-medium text-slate-400">
+            Current trend (days/decade)
           </div>
         </div>
       </div>
 
-      {/* Projection chart */}
-      <section className="card">
+      <section className="card text-center">
+        <h2 className="text-xl font-semibold text-slate-100 mb-5">
+          Projection &mdash; {scenarioNames[selectedScenario]}
+        </h2>
         <ProjectionChart
           elevationBand={selectedBand}
           scenario={selectedScenario}
+          realData={bandData}
         />
       </section>
     </div>

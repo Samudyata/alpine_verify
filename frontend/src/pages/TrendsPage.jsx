@@ -2,33 +2,58 @@ import { useState } from 'react';
 import TrendChart from '../components/TrendChart';
 import SeasonalChart from '../components/SeasonalChart';
 import StatTestCard from '../components/StatTestCard';
-
-const elevationBands = ['Low Alps (< 1500m)', 'Mid Alps (1500-2500m)', 'High Alps (> 2500m)'];
+import SnowSurface3D from '../components/SnowSurface3D';
+import useSnowData, { getBandData, getBandNames } from '../hooks/useSnowData';
 
 export default function TrendsPage() {
   const [selectedBand, setSelectedBand] = useState(0);
+  const { data: snowData, loading, error } = useSnowData();
+
+  const bandNames = getBandNames(snowData);
+  const bandData = getBandData(snowData, selectedBand);
 
   return (
-    <div className="max-w-7xl mx-auto px-6 py-12">
+    <div className="max-w-7xl mx-auto px-8 py-16">
       {/* Header */}
-      <div className="mb-12">
-        <h1 className="text-4xl font-bold text-slate-900 mb-4">Snow Cover Trends</h1>
-        <p className="text-lg text-slate-600 max-w-2xl">
+      <div className="mb-14 text-center">
+        <h1 className="text-4xl font-bold text-white mb-5">Snow Cover Trends</h1>
+        <p className="text-lg text-slate-400 max-w-3xl mx-auto leading-relaxed">
           25 years of satellite observations reveal a clear decline in Alpine snow cover,
           with low elevations losing snow fastest.
         </p>
+        {snowData && (
+          <p className="text-xs text-green-400 mt-3">
+            Source: {snowData.metadata?.source} | {snowData.metadata?.period}
+          </p>
+        )}
+        {error && (
+          <p className="text-xs text-yellow-400 mt-3">
+            Using demo data — run data pipeline for real satellite data
+          </p>
+        )}
       </div>
 
+      {/* 3D Surface Plot */}
+      <section className="card mb-12 text-center">
+        <h2 className="text-xl font-semibold text-slate-100 mb-2">
+          Alpine Snow Water Equivalent &mdash; 3D Surface
+        </h2>
+        <p className="text-sm text-slate-500 mb-4 leading-relaxed">
+          Drag to rotate, scroll to zoom. Shows snow water equivalent across all elevation bands.
+        </p>
+        <SnowSurface3D realData={snowData?.surface_3d} />
+      </section>
+
       {/* Elevation band selector */}
-      <div className="flex gap-2 mb-8">
-        {elevationBands.map((band, i) => (
+      <div className="flex gap-4 mb-10 justify-center flex-wrap">
+        {bandNames.map((band, i) => (
           <button
             key={i}
             onClick={() => setSelectedBand(i)}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+            className={`px-8 py-3 rounded-lg text-sm font-medium transition-colors whitespace-nowrap ${
               selectedBand === i
-                ? 'bg-blue-600 text-white'
-                : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50'
+                ? 'bg-blue-500 text-white shadow-sm shadow-blue-500/30'
+                : 'bg-slate-800 text-slate-400 border border-slate-700 hover:bg-slate-700'
             }`}
           >
             {band}
@@ -36,47 +61,35 @@ export default function TrendsPage() {
         ))}
       </div>
 
-      {/* Main trend chart */}
-      <section className="card mb-8">
-        <h2 className="text-xl font-semibold text-slate-800 mb-4">
-          Annual Snow Cover Duration
+      {/* Particle flow trend chart */}
+      <section className="card mb-10 text-center">
+        <h2 className="text-xl font-semibold text-slate-100 mb-5">
+          Annual Snow Cover Duration &mdash; {bandNames[selectedBand]}
         </h2>
-        <TrendChart elevationBand={selectedBand} />
+        <TrendChart elevationBand={selectedBand} realData={bandData} />
       </section>
 
       {/* Statistical tests */}
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold text-slate-800 mb-4">
+      <section className="mb-10">
+        <h2 className="text-xl font-semibold text-slate-100 mb-6 text-center">
           Statistical Evidence
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <StatTestCard
-            title="Mann-Kendall Trend"
-            testType="mann-kendall"
-            elevationBand={selectedBand}
-          />
-          <StatTestCard
-            title="Change Point Detection"
-            testType="change-point"
-            elevationBand={selectedBand}
-          />
-          <StatTestCard
-            title="Temperature Correlation"
-            testType="correlation"
-            elevationBand={selectedBand}
-          />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <StatTestCard testType="mann-kendall" elevationBand={selectedBand} realData={bandData} />
+          <StatTestCard testType="change-point" elevationBand={selectedBand} realData={bandData} />
+          <StatTestCard testType="correlation" elevationBand={selectedBand} realData={bandData} />
         </div>
       </section>
 
       {/* Seasonal chart */}
-      <section className="card">
-        <h2 className="text-xl font-semibold text-slate-800 mb-4">
+      <section className="card text-center">
+        <h2 className="text-xl font-semibold text-slate-100 mb-5">
           Seasonal Decomposition
         </h2>
-        <p className="text-sm text-slate-500 mb-4">
+        <p className="text-sm text-slate-500 mb-5 leading-relaxed">
           Which months have lost the most snow? The heatmap below shows snow duration by month and year.
         </p>
-        <SeasonalChart elevationBand={selectedBand} />
+        <SeasonalChart elevationBand={selectedBand} realSurfaceData={snowData?.surface_3d} />
       </section>
     </div>
   );
