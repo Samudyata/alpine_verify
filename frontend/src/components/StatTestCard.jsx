@@ -19,24 +19,29 @@ const statResults = {
   ],
 };
 
+const darkPlotLayout = {
+  paper_bgcolor: 'transparent',
+  plot_bgcolor: 'transparent',
+};
+
 function MannKendallCard({ data }) {
   return (
     <div className="card">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-sm font-semibold text-slate-700">Mann-Kendall Trend</h3>
+        <h3 className="text-sm font-semibold text-slate-300">Mann-Kendall Trend</h3>
         <span className={`text-xs px-2 py-1 rounded-full font-medium ${
           data.pValue < 0.01
-            ? 'bg-red-50 text-red-600'
+            ? 'bg-red-500/10 text-red-400 border border-red-500/20'
             : data.pValue < 0.05
-            ? 'bg-yellow-50 text-yellow-600'
-            : 'bg-gray-50 text-gray-600'
+            ? 'bg-yellow-500/10 text-yellow-400 border border-yellow-500/20'
+            : 'bg-slate-700 text-slate-400 border border-slate-600'
         }`}>
           p = {data.pValue}
         </span>
       </div>
 
       <div className="flex items-center gap-3 mb-4">
-        <div className="text-3xl font-bold text-red-600 flex items-center gap-1">
+        <div className="text-3xl font-bold text-red-400 flex items-center gap-1">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
             <path d="M7 7l10 10M17 7v10H7" />
           </svg>
@@ -45,7 +50,7 @@ function MannKendallCard({ data }) {
       </div>
 
       <div className="text-sm text-slate-500">
-        <span className="font-medium text-slate-700">{data.significance}</span> declining trend detected.
+        <span className="font-medium text-slate-300">{data.significance}</span> declining trend detected.
         Snow cover is decreasing at {Math.abs(data.slope)} days per decade.
       </div>
 
@@ -56,14 +61,13 @@ function MannKendallCard({ data }) {
           y: [100, 100 + data.slope * 2.4],
           type: 'scatter',
           mode: 'lines',
-          line: { color: '#DC2626', width: 3 },
+          line: { color: '#F87171', width: 3 },
           showlegend: false,
         }]}
         layout={{
           height: 80,
           margin: { t: 5, r: 10, b: 5, l: 10 },
-          paper_bgcolor: 'transparent',
-          plot_bgcolor: 'transparent',
+          ...darkPlotLayout,
           xaxis: { showgrid: false, showticklabels: false, zeroline: false },
           yaxis: { showgrid: false, showticklabels: false, zeroline: false },
         }}
@@ -78,24 +82,24 @@ function ChangePointCard({ data }) {
   return (
     <div className="card">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-sm font-semibold text-slate-700">Change Point (Pettitt)</h3>
+        <h3 className="text-sm font-semibold text-slate-300">Change Point (Pettitt)</h3>
         <span className={`text-xs px-2 py-1 rounded-full font-medium ${
           data.pValue < 0.01
-            ? 'bg-red-50 text-red-600'
+            ? 'bg-red-500/10 text-red-400 border border-red-500/20'
             : data.pValue < 0.05
-            ? 'bg-yellow-50 text-yellow-600'
-            : 'bg-gray-50 text-gray-600'
+            ? 'bg-yellow-500/10 text-yellow-400 border border-yellow-500/20'
+            : 'bg-slate-700 text-slate-400 border border-slate-600'
         }`}>
           p = {data.pValue}
         </span>
       </div>
 
-      <div className="text-3xl font-bold text-amber-600 mb-4">
+      <div className="text-3xl font-bold text-amber-400 mb-4">
         {data.year}
       </div>
 
       <div className="text-sm text-slate-500 mb-4">
-        Decline accelerated around <span className="font-medium text-slate-700">{data.year}</span>.
+        Decline accelerated around <span className="font-medium text-slate-300">{data.year}</span>.
         Mean dropped from {data.beforeMean} to {data.afterMean} days.
       </div>
 
@@ -105,15 +109,14 @@ function ChangePointCard({ data }) {
           x: [`Before ${data.year}`, `After ${data.year}`],
           y: [data.beforeMean, data.afterMean],
           type: 'bar',
-          marker: { color: ['#3B82F6', '#F59E0B'] },
+          marker: { color: ['#60A5FA', '#FBBF24'] },
           showlegend: false,
         }]}
         layout={{
           height: 80,
           margin: { t: 5, r: 10, b: 25, l: 10 },
-          paper_bgcolor: 'transparent',
-          plot_bgcolor: 'transparent',
-          xaxis: { showgrid: false, tickfont: { size: 10 } },
+          ...darkPlotLayout,
+          xaxis: { showgrid: false, tickfont: { size: 10, color: '#94A3B8' } },
           yaxis: { showgrid: false, showticklabels: false },
         }}
         config={{ staticPlot: true }}
@@ -131,19 +134,19 @@ function CorrelationCard({ data }) {
   return (
     <div className="card">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-sm font-semibold text-slate-700">Temp vs Snow Correlation</h3>
-        <span className="text-xs px-2 py-1 rounded-full font-medium bg-blue-50 text-blue-600">
+        <h3 className="text-sm font-semibold text-slate-300">Temp vs Snow Correlation</h3>
+        <span className="text-xs px-2 py-1 rounded-full font-medium bg-blue-500/10 text-blue-400 border border-blue-500/20">
           R = {data.r}
         </span>
       </div>
 
-      <div className="text-3xl font-bold text-blue-600 mb-4">
+      <div className="text-3xl font-bold text-blue-400 mb-4">
         R² = {data.rSquared}
       </div>
 
       <div className="text-sm text-slate-500 mb-2">
-        Temperature explains <span className="font-medium text-slate-700">{(data.rSquared * 100).toFixed(0)}%</span> of
-        snow cover variation. Strong inverse relationship.
+        Temperature explains <span className="font-medium text-slate-300">{(data.rSquared * 100).toFixed(0)}%</span> of
+        snow cover variation. {Math.abs(data.r) > 0.7 ? 'Strong' : Math.abs(data.r) > 0.4 ? 'Moderate' : 'Weak'} {data.r < 0 ? 'inverse' : 'positive'} relationship.
       </div>
 
       <Plot
@@ -152,21 +155,20 @@ function CorrelationCard({ data }) {
           y: snow,
           type: 'scatter',
           mode: 'markers',
-          marker: { color: '#2563EB', size: 6, opacity: 0.7 },
+          marker: { color: '#60A5FA', size: 6, opacity: 0.7 },
           showlegend: false,
         }, {
           x: [Math.min(...temps), Math.max(...temps)],
           y: [Math.max(...snow), Math.min(...snow)],
           type: 'scatter',
           mode: 'lines',
-          line: { color: '#DC2626', width: 2, dash: 'dash' },
+          line: { color: '#F87171', width: 2, dash: 'dash' },
           showlegend: false,
         }]}
         layout={{
           height: 100,
           margin: { t: 5, r: 10, b: 5, l: 10 },
-          paper_bgcolor: 'transparent',
-          plot_bgcolor: 'transparent',
+          ...darkPlotLayout,
           xaxis: { showgrid: false, showticklabels: false },
           yaxis: { showgrid: false, showticklabels: false },
         }}
@@ -177,8 +179,35 @@ function CorrelationCard({ data }) {
   );
 }
 
-export default function StatTestCard({ title, testType, elevationBand }) {
-  const data = statResults[testType]?.[elevationBand];
+export default function StatTestCard({ title, testType, elevationBand, realData }) {
+  // Use real data if available, otherwise fallback to synthetic
+  let data;
+  if (realData) {
+    if (testType === 'mann-kendall' && realData.mann_kendall) {
+      data = {
+        slope: realData.mann_kendall.slope,
+        pValue: realData.mann_kendall.p_value,
+        significance: realData.mann_kendall.significance,
+        direction: realData.mann_kendall.direction,
+      };
+    } else if (testType === 'change-point' && realData.change_point) {
+      data = {
+        year: realData.change_point.year,
+        beforeMean: realData.change_point.before_mean,
+        afterMean: realData.change_point.after_mean,
+        pValue: realData.change_point.p_value,
+      };
+    } else if (testType === 'correlation' && realData.correlation) {
+      data = {
+        r: realData.correlation.r,
+        rSquared: realData.correlation.r_squared,
+        pValue: realData.correlation.p_value,
+      };
+    }
+  }
+  if (!data) {
+    data = statResults[testType]?.[elevationBand];
+  }
   if (!data) return null;
 
   if (testType === 'mann-kendall') return <MannKendallCard data={data} />;
